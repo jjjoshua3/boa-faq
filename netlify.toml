@@ -1,6 +1,10 @@
 [build]
   publish = "."
 
+[[edge_functions]]
+  function = "poort"
+  path = "/*"
+
 [[headers]]
   for = "/*"
   [headers.values]
