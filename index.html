@@ -11,48 +11,42 @@
   <style>
     :root {
       --ink: #0f2537;
-      --soft: #3d4c59;
-      --paper: #f4f0e8;
-      --card: #fffcf7;
-      --line: #e3d9cc;
+      --soft: #4b5563;
+      --paper: #f3efe6;
+      --card: #fffdf8;
+      --line: #e4d8c8;
       --amber: #9a5b12;
-      --amber-soft: #f3e6d4;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Segoe UI", "Avenir Next", sans-serif; }
+    body { margin: 0; background: radial-gradient(circle at top, #fffaf2 0%, var(--paper) 42%); color: var(--ink); font-family: "Segoe UI", "Avenir Next", sans-serif; }
     header { background: var(--ink); color: #fff; }
-    .binnen { width: min(820px, calc(100% - 32px)); margin: 0 auto; }
+    .binnen { width: min(860px, calc(100% - 32px)); margin: 0 auto; }
     .kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
     .merkrij { display: flex; align-items: center; gap: 12px; }
-    .merk { width: 36px; height: 36px; border-radius: 50%; background: #f4f0e8; color: var(--ink); display: grid; place-items: center; font-size: 11px; font-weight: 700; }
-    .merkrij strong { letter-spacing: 0.08em; font-size: 12px; }
-    .merkrij span { display: block; font-family: Georgia, "Iowan Old Style", serif; font-style: italic; color: #d9cfc3; font-size: 13px; }
+    .merk { width: 40px; height: 40px; border-radius: 50%; background: #f4f0e8; color: var(--ink); display: grid; place-items:center; font-size: 11px; font-weight: 700; }
+    .merkrij strong { letter-spacing: 0.1em; font-size: 12px; }
+    .merkrij span { display: block; font-family: Georgia, "Iowan Old Style", serif; font-style: italic; color: #d9cfc3; font-size: 14px; letter-spacing: 0; }
     .kop a { color: #fff; font-size: 13px; }
-    main { padding: 28px 0 72px; }
-    h1 { font-family: Georgia, "Iowan Old Style", serif; font-weight: 500; font-size: 42px; margin: 0 0 8px; }
-    .sub { color: var(--soft); margin: 0 0 18px; max-width: 62ch; line-height: 1.5; }
-    input[type="search"] {
-      width: 100%; border: 1px solid var(--line); background: var(--card);
-      border-radius: 12px; padding: 12px 14px; font: inherit; color: inherit;
-    }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
-    .chips button {
-      font: inherit; color: var(--ink); background: var(--card);
-      border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer;
-    }
+    main { padding: 34px 0 80px; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--amber); font-weight: 700; margin: 0 0 8px; }
+    h1 { font-family: Georgia, "Iowan Old Style", serif; font-weight: 500; font-size: 48px; line-height: .95; margin: 0 0 12px; }
+    .sub { color: var(--soft); margin: 0 0 20px; max-width: 58ch; line-height: 1.55; font-size: 17px; }
+    .zoekvlak { position: sticky; top: 10px; z-index: 2; background: rgba(243,239,230,.92); backdrop-filter: blur(8px); padding: 8px 0 10px; }
+    input[type="search"] { width: 100%; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 14px 18px; font: inherit; color: inherit; box-shadow: 0 8px 24px rgba(15,37,55,.05); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 4px; }
+    .chips button { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
     .chips button.aan { background: var(--ink); color: #fff; border-color: var(--ink); }
     .telling { color: var(--soft); font-size: 13px; margin: 8px 0 14px; }
-    details {
-      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-      padding: 0 14px; margin: 0 0 8px;
-    }
-    summary { cursor: pointer; padding: 14px 4px; font-weight: 650; line-height: 1.4; }
-    summary::-webkit-details-marker { color: var(--amber); }
-    details p { margin: 0 0 14px; color: var(--soft); line-height: 1.55; }
+    details { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 0 16px; margin: 0 0 10px; box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; }
+    details[open] { border-color: #c9b69a; }
+    summary { cursor: pointer; list-style: none; display: flex; gap: 12px; align-items: baseline; padding: 16px 2px; font-weight: 650; line-height: 1.35; }
+    summary::-webkit-details-marker { display: none; }
+    .nr { font-family: ui-monospace, "Courier New", monospace; color: var(--amber); font-size: 12px; font-weight: 700; min-width: 1.6rem; }
+    details p { margin: 0 0 16px 28px; color: var(--soft); line-height: 1.6; }
     .leeg { padding: 18px; color: var(--soft); }
-    footer { margin-top: 28px; color: var(--soft); font-size: 13px; line-height: 1.6; }
+    footer { margin-top: 32px; color: var(--soft); font-size: 13px; line-height: 1.7; }
     a { color: var(--ink); }
-    @media (max-width: 700px) { h1 { font-size: 34px; } }
+    @media (max-width: 700px) { h1 { font-size: 36px; } details p { margin-left: 0; } }
   </style>
 </head>
 <body>
@@ -66,10 +60,13 @@
     </div>
   </header>
   <main class="binnen">
+    <p class="kicker">Voor gebruikers</p>
     <h1>Veelgestelde vragen</h1>
     <p class="sub">Antwoorden voor wie boaportaal.nl gebruikt. Dit is een onafhankelijke naslag. Geen publicatie van het OM, de politie of een gemeente. De akte en de geldende wettekst gaan voor.</p>
-    <input id="zoek" type="search" placeholder="Zoek een vraag" autocomplete="off">
-    <div class="chips" id="chips"></div>
+    <div class="zoekvlak">
+      <input id="zoek" type="search" placeholder="Zoek een vraag" autocomplete="off">
+      <div class="chips" id="chips"></div>
+    </div>
     <p class="telling" id="telling"></p>
     <div id="lijst"></div>
     <footer>
@@ -157,7 +154,7 @@
       chips.querySelectorAll("button").forEach((knop) => knop.classList.toggle("aan", knop.dataset.id === groep));
       const zichtbaar = VRAGEN.filter(([g, vraag, antwoord]) => (groep === "alles" || g === groep) && (!q || `${vraag} ${antwoord}`.toLowerCase().includes(q)));
       telling.textContent = zichtbaar.length === 1 ? "1 vraag" : `${zichtbaar.length} vragen`;
-      lijst.innerHTML = zichtbaar.length ? zichtbaar.map(([, vraag, antwoord]) => `<details><summary>${vraag}</summary><p>${antwoord}</p></details>`).join("") : `<p class="leeg">Geen vraag met die woorden. Probeer een korter woord, of kies Alles.</p>`;
+      lijst.innerHTML = zichtbaar.length ? zichtbaar.map(([, vraag, antwoord], index) => `<details><summary><span class="nr">${String(index + 1).padStart(2, "0")}</span><span>${vraag}</span></summary><p>${antwoord}</p></details>`).join("") : `<p class="leeg">Geen vraag met die woorden. Probeer een korter woord, of kies Alles.</p>`;
     }
     zoek.addEventListener("input", teken);
     teken();
