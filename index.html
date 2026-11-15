@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veelgestelde vragen | BOA Portaal</title>
+  <meta name="description" content="Antwoorden op vragen van gebruikers van boaportaal.nl: account, feitcodes, zakkaart, kluis, community, servicedesk en privacy.">
+  <link rel="canonical" href="https://faq.boaportaal.nl/">
+  <meta name="robots" content="index, follow">
+  <style>
+    :root {
+      --ink: #0f2537;
+      --soft: #3d4c59;
+      --paper: #f4f0e8;
+      --card: #fffcf7;
+      --line: #e3d9cc;
+      --amber: #9a5b12;
+      --amber-soft: #f3e6d4;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Segoe UI", "Avenir Next", sans-serif; }
+    header { background: var(--ink); color: #fff; }
+    .binnen { width: min(820px, calc(100% - 32px)); margin: 0 auto; }
+    .kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
+    .merkrij { display: flex; align-items: center; gap: 12px; }
+    .merk { width: 36px; height: 36px; border-radius: 50%; background: #f4f0e8; color: var(--ink); display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+    .merkrij strong { letter-spacing: 0.08em; font-size: 12px; }
+    .merkrij span { display: block; font-family: Georgia, "Iowan Old Style", serif; font-style: italic; color: #d9cfc3; font-size: 13px; }
+    .kop a { color: #fff; font-size: 13px; }
+    main { padding: 28px 0 72px; }
+    h1 { font-family: Georgia, "Iowan Old Style", serif; font-weight: 500; font-size: 42px; margin: 0 0 8px; }
+    .sub { color: var(--soft); margin: 0 0 18px; max-width: 62ch; line-height: 1.5; }
+    input[type="search"] {
+      width: 100%; border: 1px solid var(--line); background: var(--card);
+      border-radius: 12px; padding: 12px 14px; font: inherit; color: inherit;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
+    .chips button {
+      font: inherit; color: var(--ink); background: var(--card);
+      border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer;
+    }
+    .chips button.aan { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .telling { color: var(--soft); font-size: 13px; margin: 8px 0 14px; }
+    details {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 0 14px; margin: 0 0 8px;
+    }
+    summary { cursor: pointer; padding: 14px 4px; font-weight: 650; line-height: 1.4; }
+    summary::-webkit-details-marker { color: var(--amber); }
+    details p { margin: 0 0 14px; color: var(--soft); line-height: 1.55; }
+    .leeg { padding: 18px; color: var(--soft); }
+    footer { margin-top: 28px; color: var(--soft); font-size: 13px; line-height: 1.6; }
+    a { color: var(--ink); }
+    @media (max-width: 700px) { h1 { font-size: 34px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="binnen kop">
+      <div class="merkrij">
+        <div class="merk" aria-hidden="true">BOA</div>
+        <div><strong>BOA PORTAAL</strong><span>Voor BOA's, door BOA's</span></div>
+      </div>
+      <a href="https://boaportaal.nl">Naar het portaal</a>
+    </div>
+  </header>
+  <main class="binnen">
+    <h1>Veelgestelde vragen</h1>
+    <p class="sub">Antwoorden voor wie boaportaal.nl gebruikt. Dit is een onafhankelijke naslag. Geen publicatie van het OM, de politie of een gemeente. De akte en de geldende wettekst gaan voor.</p>
+    <input id="zoek" type="search" placeholder="Zoek een vraag" autocomplete="off">
+    <div class="chips" id="chips"></div>
+    <p class="telling" id="telling"></p>
+    <div id="lijst"></div>
+    <footer>
+      <a href="https://boaportaal.nl/privacy">Privacy</a>
+      · <a href="https://status.boaportaal.nl">Status</a>
+      · <a href="https://servicedesk.boaportaal.nl">Servicedesk</a>
+      · <a href="https://wa.me/31644912282">WhatsApp Only: 06 4491 2282</a>
+    </footer>
+  </main>
+  <script>
+    const GROEPEN = [
+      ["alles", "Alles"],
+      ["portaal", "Het portaal"],
+      ["account", "Account"],
+      ["naslag", "Naslag"],
+      ["dienst", "Op dienst"],
+      ["kluis", "Community en kluis"],
+      ["hulp", "Hulp en mail"],
+    ];
+    const VRAGEN = [
+      ["portaal", "Wat is BOA Portaal?", "Een gratis naslag voor buitengewoon opsporingsambtenaren, HTV-studenten en docenten, voor domein 1 tot en met 6. Geen reclame en geen abonnement. Het is geen systeem van het Openbaar Ministerie, de politie, het CJIB of een gemeente."],
+      ["portaal", "Voor wie is de site?", "Voor een BOA op straat, een student en een vakdocent. Op de startpagina kies je die rol. De site zet dan de onderdelen die bij die rol horen vooraan. De keuze blijft in deze browser."],
+      ["portaal", "Moet ik betalen?", "Nee. Het portaal is gratis. Wie het werk wil steunen, kan dat vrijwillig via Ko-fi. Dat verandert niets aan wat je op de site kunt doen."],
+      ["portaal", "Is dit officieel van het OM of de politie?", "Nee. De akte, wetten.nl en het Feitenboekje gaan voor. Een tekst op het portaal is een hulpmiddel. Die vervangt geen boete, geen proces-verbaal en geen beslissing van een officier."],
+      ["portaal", "Welke domeinen zitten erin?", "Domein 1 tot en met 6. Daaronder vallen onder meer de veelgenoemde rollen in domein 1, zoals jeugd, wijk, ondermijning, horeca en alcohol, en verkeer en parkeren. Ook een senior of teamleider vindt er naslag."],
+      ["portaal", "Werkt het op de telefoon, op straat?", "Ja. Het is een website, geen app uit een winkel. Op de telefoon staat de navigatie onderin. Voeg de site toe aan je beginscherm als je browser dat aanbiedt."],
+      ["portaal", "Heb ik internet nodig?", "Voor de eerste keer openen wel. Live onderdelen, zoals een kenteken bij de RDW, de lijst vermiste personen en de statuspagina, hebben elke keer verbinding nodig."],
+      ["portaal", "Staat er reclame op?", "Nee. Er zijn geen advertenties en geen advertentiecookies. Een sessiecookie houdt je alleen aangemeld."],
+      ["account", "Moet ik een account hebben?", "Niet voor de naslag. Feitcodes, de zakkaart, de beslisbomen, de PV-bouwer en de trainer zijn zonder account te lezen. Een account heb je nodig voor de kluis, de community en een ticket op de servicedesk."],
+      ["account", "Welk e-mailadres mag ik gebruiken?", "Een zakelijk, overheids-, vervoers- of schooladres. Een gratis mailbox, zoals Gmail of Outlook.com, wordt geweigerd."],
+      ["account", "Waarom zie ik geen e-mailadres als ik ben ingelogd?", "Het portaal toont een Client-ID, bijvoorbeeld BP-3200-YE, en een PV-naam. Collega's en beheer zien die twee. Je mailadres staat niet op het scherm."],
+      ["account", "Waar vind ik mijn Client-ID?", "Op boaportaal.nl/account, als je bent ingelogd. Die code gebruik je ook als loginnaam voor de medewerkersportalen, als je die rol hebt."],
+      ["account", "Wat is de PV-naam?", "De korte naam zoals die in een proces-verbaal staat: ACHTERNAAM, V. Die staat onder een gewoon bericht op de community en op een ticket."],
+      ["account", "Hoe log ik in?", "Met je zakelijke adres en je wachtwoord. Staat de tweede stap aan, dan ook de zes cijfers uit de authenticator. Tot die stap aanstaat, is het wachtwoord genoeg. Dat staat dan zo op het scherm."],
+      ["account", "Wat is het verschil tussen de twee codes?", "In dezelfde authenticator-app staan twee namen. BOA Portaal geldt voor boaportaal.nl en voor de servicedesk als indiener. BOA Beheer geldt voor systeem, de behandelaar op de servicedesk, en de mail. De code vervangt het wachtwoord niet."],
+      ["account", "Wat doet het vinkje 'onthoud mij 30 dagen'?", "Je blijft op dat apparaat aangemeld. Na 30 dagen zetten we de sessie uit en vragen we opnieuw wie je bent. Zonder dat vinkje blijft de sessie hooguit 12 uur staan. Afmelden kan altijd zelf."],
+      ["account", "Ik ben mijn wachtwoord kwijt.", "Ben je nog ingelogd, wijzig het dan zelf op de accountpagina. Anders meld je het via de servicedesk of via WhatsApp. Een medewerker kan een herstel-link laten sturen zonder je adres te zien. Alleen de hoofdbeheerder kan een wachtwoord direct zetten."],
+      ["account", "Kan ik mijn account weghalen?", "Ja. Je verwijdert het zelf, of de hoofdbeheerder sluit het op jouw verzoek. De kluis gaat dan mee."],
+      ["naslag", "Waar staan de feitcodes?", "Onder Feitcodes. Je zoekt op de code en op woorden, bijvoorbeeld een stopteken. Het overzicht toont niet elke code tegelijk. Via de zoekbalk bovenaan kom je bij de rest, over de hele site."],
+      ["naslag", "Klopt elk bedrag?", "Waar een bedrag staat, komt dat uit het Feitenboekje en de Boetebase van januari 2026. Administratiekosten van 9 euro staan er apart bij als die erbij horen. Auto, motor, bromfiets, fiets en voetganger kunnen een ander bedrag hebben. De akte en wetten.nl gaan voor."],
+      ["naslag", "Waarom vind ik een feit niet meteen?", "Het overzicht is een selectie, zodat de pagina leesbaar blijft. Typ de code of een woord in de zoekbalk in de kop. Die zoekt niet alleen op de pagina waar je staat."],
+      ["naslag", "Wat is de zakkaart?", "Korte kaarten voor op straat. Onder meer cautie en verhoor, de ID-vordering, aanhouding, de sfeerovergang, en jeugd en HALT."],
+      ["naslag", "Wat is een beslisboom?", "Een reeks vragen die je langs de stappen leidt. Het is een geheugensteun. Geen beslissing van het OM en geen vervanging van je eigen akte."],
+      ["naslag", "Wat is de trainer?", "Korte casussen. Je kiest een antwoord en ziet welk antwoord klopt, en waarom. Bedoeld voor studenten en voor wie de stof wil bijhouden."],
+      ["naslag", "Wat is vakjargon?", "Korte uitleg van woorden uit de praktijk, ook van juridische termen. Zoeken kan op het woord zelf."],
+      ["naslag", "Worden de wetten zelf bijgehouden?", "De site verwijst naar de geldende tekst en naar officiële bronnen. Een samenvatting op het portaal is geen wettekst. Bij twijfel open je wetten.nl of de akte. Zie je een fout, meld die."],
+      ["dienst", "Wat is de werkbank?", "Het scherm voor tijdens de dienst. Daar vul je onder meer een combibon in en gebruik je de hulpen die bij de ronde horen."],
+      ["dienst", "Is de combibon een echte bon?", "Nee. Het is een invulhulp op het portaal, geen beschikking van het CJIB. Bewaar je hem in de kluis, dan staat hij versleuteld bij je account."],
+      ["dienst", "Wat doet de PV-bouwer?", "Die zet de onderdelen van een proces-verbaal op een rij, zodat je niets overslaat. Het portaal dient geen PV in bij het OM of bij een parket."],
+      ["dienst", "Mag ik gegevens van een burger invullen?", "Nee. Geen BSN, geen gezondheidsgegevens, geen namen, adressen of telefoonnummers van burgers, en geen zaaknummers uit een bronsysteem. De PV-bouwer, de combibon en het overlegbord blokkeren BSN, telefoon, e-mail en IBAN voordat een tekst wordt bewaard."],
+      ["dienst", "Kan ik een kenteken opzoeken?", "Ja, via de open data van de RDW. Daar staat geen naam van de houder. Het portaal bewaart die opvraag niet, tenzij je zelf een combibon in de kluis zet."],
+      ["dienst", "Staat de lijst vermiste personen erin?", "Die lijst komt live van de politie. Hij wordt niet in de database van het portaal opgeslagen."],
+      ["dienst", "Wat als ik twijfel over een cautie of een fouillering?", "Gebruik de zakkaart en de beslisboom als geheugensteun, en houd je aan je akte en de wet. Het portaal mag geen bevoegdheid toevoegen die je niet hebt."],
+      ["kluis", "Wat is de community?", "Een prikbord voor aangemelde collega's. Onder een gewoon bericht staan de PV-naam en de Client-ID, niet het e-mailadres."],
+      ["kluis", "Kan ik anoniem posten?", "Ja. Dan staat er een code, geen naam en geen Client-ID. Die code is per bericht anders. Een reactie van jou op dat bericht blijft anoniem en houdt dezelfde code. Een nieuw anoniem bericht krijgt een nieuwe code."],
+      ["kluis", "Kan iemand zien wie anoniem postte?", "Collega's niet. Support en beheer kunnen de code opzoeken in systeem.boaportaal.nl. Daarvoor is een reden verplicht, en die komt in het auditlog."],
+      ["kluis", "Wat is de kluis?", "De plek voor je eigen notities, PV-concepten, combibonnen en kaarten. De tekst wordt in je browser versleuteld met AES-256-GCM. De database krijgt alleen cijfertekst."],
+      ["kluis", "Kan support mijn kluis lezen?", "Nee. De beheerder ziet tellers: hoeveel notities, concepten en favorieten er staan, en wanneer de kluis voor het laatst synchroniseerde. Niet de inhoud."],
+      ["kluis", "Blijft de kluis staan als ik van telefoon wissel?", "De versleutelde kluis hangt aan je account, niet aan één apparaat. Log in op het nieuwe apparaat. Zonder je account is de tekst niet te lezen."],
+      ["hulp", "Wat is de servicedesk?", "servicedesk.boaportaal.nl is voor een vraag over het portaal. Geen proces-verbaal en geen dossier van een burger. Een melding maken kan iedereen met een account. De wachtrij is alleen voor medewerkers."],
+      ["hulp", "Hoe bereik ik iemand snel?", "WhatsApp Only: 06 4491 2282. Die link staat ook onderaan boaportaal.nl en in het venster Servicedesk. Of maak een ticket."],
+      ["hulp", "Wat is mail.boaportaal.nl?", "De postbus voor medewerkers, niet voor elke gebruiker van de site. Een medewerker logt in met de loginnaam, zonder @boaportaal.nl erachter. Dat is de Client-ID, of een vaste naam zoals info."],
+      ["hulp", "Zijn Support en Info voor iedereen leesbaar?", "Alleen voor medewerkers. support@ en info@ zijn gedeelde postbussen. Privépost op je eigen medewerkersadres ziet alleen jij. Gewone gebruikers van het portaal komen daar niet in."],
+      ["hulp", "Wat is status.boaportaal.nl?", "Daar zie je of het portaal, de servicedesk, het systeem, de mail en de aanmelddienst bereikbaar zijn, en of er onderhoud is. De pagina haalt dat zelf op. Er staat geen accountinformatie op."],
+      ["hulp", "Wat is systeem.boaportaal.nl?", "Het beheerscherm voor medewerkers: accounts, rollen en de servicedesk aan de achterkant. Een gewone gebruiker heeft daar niets te zoeken."],
+      ["hulp", "Bewaren jullie wat ik opzoek?", "Feitcodes, zakkaart, bomen, de PV-bouwer en de trainer sturen geen dossier naar een server. Domein, rol en dag- of nachtdienst blijven in deze browser. Een kentekenopvraag wordt niet bewaard, tenzij jij die zelf in een combibon in de kluis zet."],
+      ["hulp", "Hoe lang blijven gegevens staan?", "Het account en de kluis tot je ze verwijdert. Inlogpogingen 30 dagen, een mislukte poging zonder account 7 dagen. Gewone auditregels 90 dagen. Gesloten tickets 90 dagen, daarna weg. De volledige lijst staat op de privacypagina."],
+      ["hulp", "Verkopen jullie gegevens?", "Nee. Geen verkoop, geen advertentieprofiel en geen automatische beslissing over jou."],
+      ["hulp", "Ik zie een fout in een feit, een bedrag of een wet.", "Meld het via de servicedesk of via WhatsApp, met de feitcode of de pagina erbij. De akte en wetten.nl gaan voor. Klopt de melding met de bron, dan wordt de tekst aangepast."],
+      ["hulp", "Wie maakt dit, en kan ik meedenken?", "Joshua bouwt het portaal, onafhankelijk, voor BOA's door BOA's. Meedenken over de inhoud van een domein kan. Stuur een bericht via WhatsApp of de servicedesk. Steunen kan via Ko-fi, dat hoeft niet."]
+    ];
+    const chips = document.getElementById("chips");
+    const lijst = document.getElementById("lijst");
+    const zoek = document.getElementById("zoek");
+    const telling = document.getElementById("telling");
+    let groep = "alles";
+    GROEPEN.forEach(([id, label]) => {
+      const knop = document.createElement("button");
+      knop.type = "button";
+      knop.textContent = label;
+      knop.dataset.id = id;
+      knop.addEventListener("click", () => { groep = id; teken(); });
+      chips.appendChild(knop);
+    });
+    function teken() {
+      const q = zoek.value.trim().toLowerCase();
+      chips.querySelectorAll("button").forEach((knop) => knop.classList.toggle("aan", knop.dataset.id === groep));
+      const zichtbaar = VRAGEN.filter(([g, vraag, antwoord]) => (groep === "alles" || g === groep) && (!q || `${vraag} ${antwoord}`.toLowerCase().includes(q)));
+      telling.textContent = zichtbaar.length === 1 ? "1 vraag" : `${zichtbaar.length} vragen`;
+      lijst.innerHTML = zichtbaar.length ? zichtbaar.map(([, vraag, antwoord]) => `<details><summary>${vraag}</summary><p>${antwoord}</p></details>`).join("") : `<p class="leeg">Geen vraag met die woorden. Probeer een korter woord, of kies Alles.</p>`;
+    }
+    zoek.addEventListener("input", teken);
+    teken();
+  </script>
+</body>
+</html>
